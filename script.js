@@ -3,7 +3,7 @@ var requestOptions = {
   redirect: "follow",
 };
 
-// TRENDING MOVIE
+// HERO MOVIE
 fetch(
   "https://api.themoviedb.org/3/trending/movie/day?api_key=1a08c634ec1bc9d64558c15c3e88cdbf",
   requestOptions
@@ -21,8 +21,8 @@ fetch(
       .then((result) => {
         console.log(result);
         let movieTrailer = result.results;
-        let link = `https://www.youtube.com/embed/${movieTrailer[0].key}`;
-        let trailer = `<iframe width="100%" height="100%" src="${link}" frameborder="0" allow="autoplay" allowfullscreen></iframe>`;
+        let link = `https://www.youtube.com/embed/${movieTrailer[0].key}?autoplay=1&rel=0&showinfo=0&controls=0&mute=0`;
+        let trailer = `<iframe width="100%" height="100%" src="${link}" frameborder="0"</iframe>`;
         document.getElementById("hero").innerHTML += trailer;
       })
       .catch((error) => console.log("error", error));
