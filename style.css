@@ -5,6 +5,7 @@
 
 body {
   background-color: black;
+  overflow-x: hidden;
 }
 
 #hero {
@@ -17,10 +18,10 @@ body {
   display: flex;
   list-style: none;
   overflow: auto;
-  width: 98vw;
+  width: 95vw;
   align-items: center;
   height: 25rem;
-  margin-left: 10px;
+  margin-left: 20px;
   scroll-behavior: smooth;
 }
 
@@ -28,12 +29,9 @@ body {
   display: none;
 }
 
-.content-styling li {
+.content-styling li img {
   display: flex;
   margin: 5px;
-}
-
-.content-styling li img {
   width: 200px;
   border-radius: 10px;
   user-select: none;
@@ -68,7 +66,7 @@ body {
 
 .search {
   height: 50%;
-  width: 5%;
+  width: 7%;
   margin: 20px;
   border-radius: 5px;
   border: none;
