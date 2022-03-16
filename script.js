@@ -39,6 +39,9 @@ async function getMovies() {
   let trsJson = await topRatedShows.json();
   console.log(pmJson);
 
+  let all = [pmJson, psJson, trmJson, trsJson];
+  console.log(all);
+
   // Sätt eventlyssnare på alla bilder
 
   let link = `https://www.youtube.com/embed/${ht2Json.results[2].key}?autoplay=1&rel=0&showinfo=0&controls=0&mute=0`;
@@ -47,22 +50,26 @@ async function getMovies() {
 
   pmJson.results.forEach((item) => {
     let poster = item.poster_path;
-    let movie = `<li><img src="https://image.tmdb.org/t/p/w154${poster}"></li>`;
+    let backdrop = item.backdrop_path;
+    let movie = `<li><img src="https://image.tmdb.org/t/p/w154${poster}"><img src="https://image.tmdb.org/t/p/w154${backdrop}" style="display: none;"></li>`;
     document.getElementById("popular-movies").innerHTML += movie;
   });
   trmJson.results.forEach((item) => {
     let poster = item.poster_path;
-    let movie = `<li><img src="https://image.tmdb.org/t/p/w154${poster}"></li>`;
+    let backdrop = item.backdrop_path;
+    let movie = `<li><img src="https://image.tmdb.org/t/p/w154${poster}"><img src="https://image.tmdb.org/t/p/w154${backdrop}" style="display: none;"></li>`;
     document.getElementById("toprated-movies").innerHTML += movie;
   });
   psJson.results.forEach((item) => {
     let poster = item.poster_path;
-    let movie = `<li><img src="https://image.tmdb.org/t/p/w154${poster}"></li>`;
+    let backdrop = item.backdrop_path;
+    let movie = `<li><img src="https://image.tmdb.org/t/p/w154${poster}"><img src="https://image.tmdb.org/t/p/w154${backdrop}" style="display: none;"></li>`;
     document.getElementById("popular-shows").innerHTML += movie;
   });
   trsJson.results.forEach((item) => {
     let poster = item.poster_path;
-    let movie = `<li><img src="https://image.tmdb.org/t/p/w154${poster}"></li>`;
+    let backdrop = item.backdrop_path;
+    let movie = `<li><img src="https://image.tmdb.org/t/p/w154${poster}"><img src="https://image.tmdb.org/t/p/w154${backdrop}" style="display: none;"></li>`;
     document.getElementById("toprated-shows").innerHTML += movie;
   });
 
@@ -109,12 +116,33 @@ async function getMovies() {
   };
 
   // Få information om filmer/serier
-  allPosters = document.getElementsByTagName("img");
+  let allPosters = document.getElementsByTagName("img");
+  let info = document.getElementById("popup");
+  let closeBtn = document.getElementById("close");
+  let selectedPoster = document.getElementById("selected");
+  let blurScreen = document.getElementById("blur-screen");
   console.log(allPosters);
   for (let i = 0; i < allPosters.length; i++) {
     const element = allPosters[i];
     element.onclick = function () {
-      console.log("Hej");
+      console.log("Clicked");
+      info.style.width = "50vw";
+      info.style.height = "85vh";
+      closeBtn.style.display = "block";
+      blurScreen.style.display = "block";
+
+      closeBtn.onclick = function () {
+        info.style.width = "0";
+        info.style.height = "0";
+        closeBtn.style.display = "none";
+        blurScreen.style.display = "none";
+        selectedPoster.innerHTML = "";
+      };
+
+      selectedPoster.insertAdjacentHTML(
+        "afterbegin",
+        `<img class="selected-img" src="${allPosters[i].currentSrc}" alt="missing poster">`
+      );
     };
   }
 }
