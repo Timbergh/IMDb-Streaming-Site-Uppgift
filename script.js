@@ -15,32 +15,29 @@ async function getMovies() {
     "https://api.themoviedb.org/3/movie/popular?api_key=1a08c634ec1bc9d64558c15c3e88cdbf&language=en-US&page=1",
     requestOptions
   );
-  let pmJson = await popularMovies.json();
-  console.log(pmJson);
+  let popularMoviesJson = await popularMovies.json();
+  console.log(popularMoviesJson);
 
   let topRatedMovies = await fetch(
     "https://api.themoviedb.org/3/movie/top_rated?api_key=1a08c634ec1bc9d64558c15c3e88cdbf&language=en-US&page=1",
     requestOptions
   );
-  let trmJson = await topRatedMovies.json();
-  console.log(pmJson);
+  let topRatedMoviesJson = await topRatedMovies.json();
+  console.log(topRatedMoviesJson);
 
   let popularShows = await fetch(
     "https://api.themoviedb.org/3/tv/popular?api_key=1a08c634ec1bc9d64558c15c3e88cdbf&language=en-US&page=1",
     requestOptions
   );
-  let psJson = await popularShows.json();
-  console.log(pmJson);
+  let popularshowsJson = await popularShows.json();
+  console.log(popularshowsJson);
 
   let topRatedShows = await fetch(
     "https://api.themoviedb.org/3/tv/top_rated?api_key=1a08c634ec1bc9d64558c15c3e88cdbf&language=en-US&page=1",
     requestOptions
   );
-  let trsJson = await topRatedShows.json();
-  console.log(pmJson);
-
-  let all = [pmJson, psJson, trmJson, trsJson];
-  console.log(all);
+  let topRatedShowsJson = await topRatedShows.json();
+  console.log(topRatedMoviesJson);
 
   // Sätt eventlyssnare på alla bilder
 
@@ -48,28 +45,24 @@ async function getMovies() {
   let trailer = `<iframe width="100%" height="100%" src="${link}" frameborder="0"</iframe>`;
   document.getElementById("hero").innerHTML += trailer;
 
-  pmJson.results.forEach((item) => {
+  popularMoviesJson.results.forEach((item) => {
     let poster = item.poster_path;
-    let backdrop = item.backdrop_path;
-    let movie = `<li><img src="https://image.tmdb.org/t/p/w154${poster}"><img src="https://image.tmdb.org/t/p/w154${backdrop}" style="display: none;"></li>`;
+    let movie = `<li><img data-movie-id="${item.id}" data-type="movie" src="https://image.tmdb.org/t/p/w154${poster}"></li>`;
     document.getElementById("popular-movies").innerHTML += movie;
   });
-  trmJson.results.forEach((item) => {
+  topRatedMoviesJson.results.forEach((item) => {
     let poster = item.poster_path;
-    let backdrop = item.backdrop_path;
-    let movie = `<li><img src="https://image.tmdb.org/t/p/w154${poster}"><img src="https://image.tmdb.org/t/p/w154${backdrop}" style="display: none;"></li>`;
+    let movie = `<li><img data-movie-id="${item.id}" data-type="movie" src="https://image.tmdb.org/t/p/w154${poster}"></li>`;
     document.getElementById("toprated-movies").innerHTML += movie;
   });
-  psJson.results.forEach((item) => {
+  popularshowsJson.results.forEach((item) => {
     let poster = item.poster_path;
-    let backdrop = item.backdrop_path;
-    let movie = `<li><img src="https://image.tmdb.org/t/p/w154${poster}"><img src="https://image.tmdb.org/t/p/w154${backdrop}" style="display: none;"></li>`;
+    let movie = `<li><img data-movie-id="${item.id}" data-type="tv" src="https://image.tmdb.org/t/p/w154${poster}"></li>`;
     document.getElementById("popular-shows").innerHTML += movie;
   });
-  trsJson.results.forEach((item) => {
+  topRatedShowsJson.results.forEach((item) => {
     let poster = item.poster_path;
-    let backdrop = item.backdrop_path;
-    let movie = `<li><img src="https://image.tmdb.org/t/p/w154${poster}"><img src="https://image.tmdb.org/t/p/w154${backdrop}" style="display: none;"></li>`;
+    let movie = `<li><img data-movie-id="${item.id}" data-type="tv" src="https://image.tmdb.org/t/p/w154${poster}"></li>`;
     document.getElementById("toprated-shows").innerHTML += movie;
   });
 
@@ -119,30 +112,59 @@ async function getMovies() {
   let allPosters = document.getElementsByTagName("img");
   let info = document.getElementById("popup");
   let closeBtn = document.getElementById("close");
-  let selectedPoster = document.getElementById("selected");
   let blurScreen = document.getElementById("blur-screen");
+  let table = document.getElementById("info-table");
   console.log(allPosters);
   for (let i = 0; i < allPosters.length; i++) {
     const element = allPosters[i];
-    element.onclick = function () {
+    let movieId = allPosters[i].getAttribute("data-movie-id");
+    let type = allPosters[i].getAttribute("data-type");
+    element.onclick = async function () {
+      if (type == "movie") {
+        let movieData = await fetch(
+          `https://api.themoviedb.org/3/movie/${movieId}?api_key=1a08c634ec1bc9d64558c15c3e88cdbf`,
+          requestOptions
+        );
+        var movieDataJson = await movieData.json();
+        console.log(movieDataJson);
+      } else {
+        let showData = await fetch(
+          `https://api.themoviedb.org/3/tv/${movieId}?api_key=1a08c634ec1bc9d64558c15c3e88cdbf`,
+          requestOptions
+        );
+        var showDataJson = await showData.json();
+        console.log(showDataJson);
+      }
       console.log("Clicked");
       info.style.width = "50vw";
-      info.style.height = "85vh";
-      closeBtn.style.display = "block";
-      blurScreen.style.display = "block";
+      info.style.height = "80vh";
+      setTimeout(function () {
+        blurScreen.style.display = "block";
+        closeBtn.style.display = "block";
+        table.style.display = "block";
+        if (type == "movie") {
+          table.insertAdjacentHTML(
+            "afterbegin",
+            `<tr><th>Description</th><td>${movieDataJson.overview}</td></tr>`
+          );
+        } else {
+          table.insertAdjacentHTML(
+            "afterbegin",
+            `<tr><td>${showDataJson.overview}</td></tr>`
+          );
+        }
+      }, 50);
 
-      closeBtn.onclick = function () {
+      function close() {
         info.style.width = "0";
         info.style.height = "0";
         closeBtn.style.display = "none";
         blurScreen.style.display = "none";
-        selectedPoster.innerHTML = "";
-      };
-
-      selectedPoster.insertAdjacentHTML(
-        "afterbegin",
-        `<img class="selected-img" src="${allPosters[i].currentSrc}" alt="missing poster">`
-      );
+        table.style.display = "none";
+        table.innerHTML = "";
+      }
+      closeBtn.addEventListener("click", close);
+      blurScreen.addEventListener("click", close);
     };
   }
 }

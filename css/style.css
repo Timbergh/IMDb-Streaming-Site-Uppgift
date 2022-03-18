@@ -131,7 +131,7 @@ header {
   display: flex;
   justify-content: center;
   position: fixed;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
@@ -164,7 +164,12 @@ header {
 }
 
 .selected-img {
-  height: 50%;
+  height: 30%;
   margin-top: 10%;
-  border: 50px inset #f5c518;
+}
+
+table {
+  display: none;
+  height: fit-content;
+  color: white;
 }
