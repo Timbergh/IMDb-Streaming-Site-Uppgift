@@ -3,37 +3,40 @@ var requestOptions = {
   redirect: "follow",
 };
 
+const URL = "https://api.themoviedb.org/3";
+const KEY = "1a08c634ec1bc9d64558c15c3e88cdbf";
+
 async function getMovies() {
-  let heroTrailer2 = await fetch(
-    `https://api.themoviedb.org/3/movie/696806/videos?api_key=1a08c634ec1bc9d64558c15c3e88cdbf&language=en-US`,
+  let heroTrailer = await fetch(
+    `${URL}/movie/696806/videos?api_key=${KEY}&language=en-US`,
     requestOptions
   );
-  let ht2Json = await heroTrailer2.json();
-  console.log(ht2Json);
+  let heroTrailerJson = await heroTrailer.json();
+  console.log(heroTrailerJson);
 
   let popularMovies = await fetch(
-    "https://api.themoviedb.org/3/movie/popular?api_key=1a08c634ec1bc9d64558c15c3e88cdbf&language=en-US&page=1",
+    `${URL}/movie/popular?api_key=${KEY}&language=en-US&page=1`,
     requestOptions
   );
   let popularMoviesJson = await popularMovies.json();
   console.log(popularMoviesJson);
 
   let topRatedMovies = await fetch(
-    "https://api.themoviedb.org/3/movie/top_rated?api_key=1a08c634ec1bc9d64558c15c3e88cdbf&language=en-US&page=1",
+    `${URL}/movie/top_rated?api_key=${KEY}&language=en-US&page=1`,
     requestOptions
   );
   let topRatedMoviesJson = await topRatedMovies.json();
   console.log(topRatedMoviesJson);
 
   let popularShows = await fetch(
-    "https://api.themoviedb.org/3/tv/popular?api_key=1a08c634ec1bc9d64558c15c3e88cdbf&language=en-US&page=1",
+    `${URL}/tv/popular?api_key=${KEY}&language=en-US&page=1`,
     requestOptions
   );
   let popularshowsJson = await popularShows.json();
   console.log(popularshowsJson);
 
   let topRatedShows = await fetch(
-    "https://api.themoviedb.org/3/tv/top_rated?api_key=1a08c634ec1bc9d64558c15c3e88cdbf&language=en-US&page=1",
+    `${URL}/tv/top_rated?api_key=${KEY}&language=en-US&page=1`,
     requestOptions
   );
   let topRatedShowsJson = await topRatedShows.json();
@@ -41,7 +44,7 @@ async function getMovies() {
 
   // Sätt eventlyssnare på alla bilder
 
-  let link = `https://www.youtube.com/embed/${ht2Json.results[2].key}?autoplay=1&rel=0&showinfo=0&controls=0&mute=0`;
+  let link = `https://www.youtube.com/embed/${heroTrailerJson.results[2].key}?autoplay=1&rel=0&showinfo=0&controls=0&mute=0`;
   let trailer = `<iframe width="100%" height="100%" src="${link}" frameborder="0"</iframe>`;
   document.getElementById("hero").innerHTML += trailer;
 
@@ -114,6 +117,8 @@ async function getMovies() {
   let closeBtn = document.getElementById("close");
   let blurScreen = document.getElementById("blur-screen");
   let table = document.getElementById("info-table");
+  let video = document.getElementById("video");
+  let name = document.getElementById("name");
   console.log(allPosters);
   for (let i = 0; i < allPosters.length; i++) {
     const element = allPosters[i];
@@ -122,18 +127,30 @@ async function getMovies() {
     element.onclick = async function () {
       if (type == "movie") {
         let movieData = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}?api_key=1a08c634ec1bc9d64558c15c3e88cdbf`,
+          `${URL}/movie/${movieId}?api_key=${KEY}`,
           requestOptions
         );
         var movieDataJson = await movieData.json();
         console.log(movieDataJson);
+        let movieTrailer = await fetch(
+          `${URL}/movie/${movieId}/videos?api_key=${KEY}&language=en-US`,
+          requestOptions
+        );
+        var movieTrailerJson = await movieTrailer.json();
+        console.log(movieTrailerJson);
       } else {
         let showData = await fetch(
-          `https://api.themoviedb.org/3/tv/${movieId}?api_key=1a08c634ec1bc9d64558c15c3e88cdbf`,
+          `${URL}/tv/${movieId}?api_key=${KEY}`,
           requestOptions
         );
         var showDataJson = await showData.json();
         console.log(showDataJson);
+        let showTrailer = await fetch(
+          `${URL}/tv/${movieId}/videos?api_key=${KEY}&language=en-US`,
+          requestOptions
+        );
+        var showTrailerJson = await showTrailer.json();
+        console.log(showTrailerJson);
       }
       console.log("Clicked");
       info.style.width = "50vw";
@@ -142,16 +159,64 @@ async function getMovies() {
         blurScreen.style.display = "block";
         closeBtn.style.display = "block";
         table.style.display = "block";
+        // x kallas senare som movieDataJson eller showDataJson eftersom de har olika information
+        function genre(x) {
+          let genres = [];
+          if (x.genres.length == 0) {
+            genres = " - ";
+          } else {
+            for (let i = 0; i < x.genres.length; i++) {
+              genres += x.genres[i].name + ", ";
+            }
+            return genres;
+          }
+        }
+        function releaseType(x) {
+          let y = NaN;
+          if (type == "movie") {
+            y = x.release_date;
+          } else {
+            y = x.first_air_date;
+          }
+          return y;
+        }
+        function infoFuntion(x) {
+          name.insertAdjacentHTML("afterbegin", `<h1>${x.original_title}</h1>`);
+          table.insertAdjacentHTML(
+            "afterbegin",
+            `<tr><th>Description</th><th>Genre</th><th>Rating</th><th>Release</th></tr><tr><td>${
+              x.overview
+            }</td><td>${genre(x)}</td><td>${
+              x.vote_average
+            }</td><td>${releaseType(x)}</td></tr>`
+          );
+        }
         if (type == "movie") {
-          table.insertAdjacentHTML(
-            "afterbegin",
-            `<tr><th>Description</th><td>${movieDataJson.overview}</td></tr>`
+          let randomVideo = Math.floor(
+            Math.random() * movieTrailerJson.results.length
           );
+          if (movieTrailerJson.results.length == 0) {
+            video.innerHTML = "";
+          } else {
+            video.insertAdjacentHTML(
+              "afterbegin",
+              `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${movieTrailerJson.results[randomVideo].key}?&rel=0&mute=0" frameborder="0"</iframe>`
+            );
+          }
+          infoFuntion(movieDataJson);
         } else {
-          table.insertAdjacentHTML(
-            "afterbegin",
-            `<tr><td>${showDataJson.overview}</td></tr>`
+          let randomVideo = Math.floor(
+            Math.random() * showTrailerJson.results.length
           );
+          if (showTrailerJson.results.length == 0) {
+            video.innerHTML = "";
+          } else {
+            video.insertAdjacentHTML(
+              "afterbegin",
+              `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${showTrailerJson.results[randomVideo].key}?&rel=0&mute=0" frameborder="0"</iframe>`
+            );
+          }
+          infoFuntion(showDataJson);
         }
       }, 50);
 
@@ -162,6 +227,8 @@ async function getMovies() {
         blurScreen.style.display = "none";
         table.style.display = "none";
         table.innerHTML = "";
+        video.innerHTML = "";
+        name.innerHTML = "";
       }
       closeBtn.addEventListener("click", close);
       blurScreen.addEventListener("click", close);

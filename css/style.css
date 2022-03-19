@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -129,13 +131,15 @@ header {
   background-color: rgb(18, 18, 18);
   border-radius: 2%;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   position: fixed;
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
   transition: width 0.1s, height 0.1s;
+  overflow: hidden;
 }
 
 #close {
@@ -163,13 +167,29 @@ header {
   z-index: 100;
 }
 
-.selected-img {
-  height: 30%;
-  margin-top: 10%;
-}
-
 table {
   display: none;
-  height: fit-content;
+  font-family: "Noto Sans", sans-serif;
   color: white;
+  overflow: auto;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid white;
+  min-width: 100px;
+}
+
+#video {
+  height: 50%;
+  width: 100%;
+}
+
+#name {
+  color: white;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  margin: 1%;
 }
