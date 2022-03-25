@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Document</title>
+    <title>IMDb</title>
     <script
       src="https://kit.fontawesome.com/2a5fb44997.js"
       crossorigin="anonymous"
@@ -46,13 +46,20 @@
       </nav>
     </header>
     <main>
-      <div id="blur-screen"></div>
-      <div id="popup">
-        <div id="video"></div>
-        <div id="name"></div>
-        <table id="info-table"></table>
-        <button id="close">Close</button>
-      </div>
+      <section>
+        <div id="blur-screen"></div>
+        <div id="popup">
+          <div id="video"></div>
+          <div id="name"></div>
+          <table id="info-table"></table>
+          <div class="button-container">
+            <a href="play.html" class="play-link"
+              ><button id="play" class="play-buttons">Play</button></a
+            >
+            <button id="close" class="play-buttons">Close</button>
+          </div>
+        </div>
+      </section>
       <div id="hero"></div>
       <section>
         <h2 class="titles">Popular Movies</h2>

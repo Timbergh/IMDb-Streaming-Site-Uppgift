@@ -129,7 +129,7 @@ header {
   width: 0;
   height: 0;
   background-color: rgb(18, 18, 18);
-  border-radius: 2%;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -142,8 +142,8 @@ header {
   overflow: hidden;
 }
 
-#close {
-  position: absolute;
+.play-buttons {
+  position: relative;
   bottom: 0;
   right: 0;
   width: 150px;
@@ -176,6 +176,10 @@ table {
   width: 100%;
 }
 
+table::-webkit-scrollbar {
+  display: none;
+}
+
 th,
 td {
   padding: 10px;
@@ -184,7 +188,7 @@ td {
 }
 
 #video {
-  height: 50%;
+  height: 60%;
   width: 100%;
 }
 
@@ -192,4 +196,15 @@ td {
   color: white;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   margin: 1%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.play-link {
+  text-decoration: none;
 }

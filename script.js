@@ -115,6 +115,7 @@ async function getMovies() {
   let allPosters = document.getElementsByTagName("img");
   let info = document.getElementById("popup");
   let closeBtn = document.getElementById("close");
+  let playBtn = document.getElementById("play");
   let blurScreen = document.getElementById("blur-screen");
   let table = document.getElementById("info-table");
   let video = document.getElementById("video");
@@ -153,11 +154,12 @@ async function getMovies() {
         console.log(showTrailerJson);
       }
       console.log("Clicked");
-      info.style.width = "50vw";
-      info.style.height = "80vh";
+      info.style.width = "70vw";
+      info.style.height = "85vh";
       setTimeout(function () {
         blurScreen.style.display = "block";
         closeBtn.style.display = "block";
+        playBtn.style.display = "block";
         table.style.display = "block";
         // x kallas senare som movieDataJson eller showDataJson eftersom de har olika information
         function genre(x) {
@@ -180,8 +182,17 @@ async function getMovies() {
           }
           return y;
         }
+        function titleType(x) {
+          let y = NaN;
+          if (type == "movie") {
+            y = x.original_title;
+          } else {
+            y = x.original_name;
+          }
+          return y;
+        }
         function infoFuntion(x) {
-          name.insertAdjacentHTML("afterbegin", `<h1>${x.original_title}</h1>`);
+          name.insertAdjacentHTML("afterbegin", `<h1>${titleType(x)}</h1>`);
           table.insertAdjacentHTML(
             "afterbegin",
             `<tr><th>Description</th><th>Genre</th><th>Rating</th><th>Release</th></tr><tr><td>${
@@ -219,21 +230,22 @@ async function getMovies() {
           infoFuntion(showDataJson);
         }
       }, 50);
-
-      function close() {
-        info.style.width = "0";
-        info.style.height = "0";
-        closeBtn.style.display = "none";
-        blurScreen.style.display = "none";
-        table.style.display = "none";
-        table.innerHTML = "";
-        video.innerHTML = "";
-        name.innerHTML = "";
-      }
-      closeBtn.addEventListener("click", close);
-      blurScreen.addEventListener("click", close);
     };
   }
+  function close() {
+    info.style.width = "0";
+    info.style.height = "0";
+    closeBtn.style.display = "none";
+    playBtn.style.display = "none";
+    blurScreen.style.display = "none";
+    table.style.display = "none";
+    table.innerHTML = "";
+    video.innerHTML = "";
+    name.innerHTML = "";
+  }
+
+  closeBtn.addEventListener("click", close);
+  blurScreen.addEventListener("click", close);
 }
 
 getMovies();
