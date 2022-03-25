@@ -47,3 +47,8 @@ header {
 .search:focus {
   width: 20%;
 }
+
+#movie-container {
+  width: 100vw;
+  height: 100vh;
+}

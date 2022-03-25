@@ -115,11 +115,12 @@ async function getMovies() {
   let allPosters = document.getElementsByTagName("img");
   let info = document.getElementById("popup");
   let closeBtn = document.getElementById("close");
-  let playBtn = document.getElementById("play");
+  let btnContainer = document.getElementById("button-container");
   let blurScreen = document.getElementById("blur-screen");
   let table = document.getElementById("info-table");
   let video = document.getElementById("video");
   let name = document.getElementById("name");
+
   console.log(allPosters);
   for (let i = 0; i < allPosters.length; i++) {
     const element = allPosters[i];
@@ -159,8 +160,8 @@ async function getMovies() {
       setTimeout(function () {
         blurScreen.style.display = "block";
         closeBtn.style.display = "block";
-        playBtn.style.display = "block";
         table.style.display = "block";
+
         // x kallas senare som movieDataJson eller showDataJson eftersom de har olika information
         function genre(x) {
           let genres = [];
@@ -201,6 +202,11 @@ async function getMovies() {
               x.vote_average
             }</td><td>${releaseType(x)}</td></tr>`
           );
+          btnContainer.insertAdjacentHTML(
+            "afterbegin",
+            `<a href="play.html?movieid=${movieId}?type=${type}" class="play-link"
+            ><button id="play" class="play-buttons">Play</button></a>`
+          );
         }
         if (type == "movie") {
           let randomVideo = Math.floor(
@@ -233,15 +239,16 @@ async function getMovies() {
     };
   }
   function close() {
+    let playBtn = document.getElementById("play");
     info.style.width = "0";
     info.style.height = "0";
     closeBtn.style.display = "none";
-    playBtn.style.display = "none";
     blurScreen.style.display = "none";
     table.style.display = "none";
     table.innerHTML = "";
     video.innerHTML = "";
     name.innerHTML = "";
+    playBtn.style.display = "none";
   }
 
   closeBtn.addEventListener("click", close);
