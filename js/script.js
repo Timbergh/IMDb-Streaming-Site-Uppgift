@@ -204,7 +204,7 @@ async function getMovies() {
           );
           btnContainer.insertAdjacentHTML(
             "afterbegin",
-            `<a href="play.html?movieid=${movieId}?type=${type}" class="play-link"
+            `<a href="play.html?movieid=${movieId}&type=${type}" class="play-link"
             ><button id="play" class="play-buttons">Play</button></a>`
           );
         }

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -50,5 +52,72 @@ header {
 
 #movie-container {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 60px);
+  color: white;
+  font-size: 300%;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+#information-container {
+  padding: 1em;
+}
+
+#information-container h1 {
+  font-size: 3rem;
+  font-family: "Bebas Neue", cursive;
+  color: white;
+}
+
+.info {
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Barlow Condensed", sans-serif;
+  margin-top: 1em;
+}
+
+.line {
+  border-bottom: 2px white solid;
+  width: 96vw;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+#view-all-btn {
+  cursor: pointer;
+}
+
+#recommended {
+  display: flex;
+  list-style: none;
+  overflow: auto;
+  width: 100vw;
+  align-items: center;
+  height: 25rem;
+  scroll-behavior: smooth;
+}
+
+#recommended li img {
+  display: flex;
+  margin: 5px;
+  width: 200px;
+  border-radius: 10px;
+  user-select: none;
+  transition: transform 0.5s ease;
+}
+
+#recommended img:hover {
+  transform: scale(1.32);
+  box-shadow: 0 4px 20px 0 rgba(2, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  z-index: 1;
+}
+
+#recommended::-webkit-scrollbar {
+  display: none;
+}
+
+.also {
+  margin-left: 0.5em;
+  font-size: 2rem;
 }
