@@ -36,7 +36,7 @@ header {
   margin: 30px;
 }
 
-.search {
+#search {
   height: 50%;
   width: 7%;
   margin: 20px;
@@ -46,7 +46,7 @@ header {
   transition: width 0.5s ease;
 }
 
-.search:focus {
+#search:focus {
   width: 20%;
 }
 
