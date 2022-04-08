@@ -8,7 +8,7 @@ const KEY = "1a08c634ec1bc9d64558c15c3e88cdbf";
 
 async function getMovies() {
   let heroTrailer = await fetch(
-    `${URL}/movie/696806/videos?api_key=${KEY}&language=en-US`,
+    `${URL}/tv/94605/videos?api_key=${KEY}&language=en-US`,
     requestOptions
   );
   let heroTrailerJson = await heroTrailer.json();
@@ -44,7 +44,7 @@ async function getMovies() {
 
   // Sätt eventlyssnare på alla bilder
 
-  let link = `https://www.youtube.com/embed/${heroTrailerJson.results[2].key}?autoplay=1&rel=0&showinfo=0&controls=0&mute=0`;
+  let link = `https://www.youtube.com/embed/${heroTrailerJson.results[4].key}?autoplay=1&rel=0&showinfo=0&controls=0&mute=0`;
   let trailer = `<iframe width="100%" height="100%" src="${link}" frameborder="0"</iframe>`;
   document.getElementById("hero").innerHTML += trailer;
 
