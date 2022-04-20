@@ -45,7 +45,7 @@ async function getSearch() {
     e.forEach((item) => {
       if (item.poster_path != null) {
         resultsContainer.insertAdjacentHTML(
-          "afterbegin",
+          "beforeend",
           `<li><img src="https://image.tmdb.org/t/p/w154${item.poster_path}"></li>`
         );
       }
