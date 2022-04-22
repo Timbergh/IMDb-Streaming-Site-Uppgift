@@ -111,7 +111,6 @@ async function getMovies() {
     document.getElementById("toprated-shows").scrollLeft += 1000;
   };
 
-  // Få information om filmer/serier
   let allPosters = document.getElementsByTagName("img");
   let info = document.getElementById("popup");
   let closeBtn = document.getElementById("close");
@@ -121,6 +120,7 @@ async function getMovies() {
   let video = document.getElementById("video");
   let name = document.getElementById("name");
 
+  // Få information om filmer/serier
   console.log(allPosters);
   for (let i = 0; i < allPosters.length; i++) {
     const element = allPosters[i];

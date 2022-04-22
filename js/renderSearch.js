@@ -41,13 +41,23 @@ async function getSearch() {
   console.log(allResults);
 
   let resultsContainer = document.getElementById("search-result-container");
+
   allResults.forEach((e) => {
     e.forEach((item) => {
       if (item.poster_path != null) {
-        resultsContainer.insertAdjacentHTML(
-          "beforeend",
-          `<li><img src="https://image.tmdb.org/t/p/w154${item.poster_path}"></li>`
-        );
+        if (item.first_air_date) {
+          resultsContainer.insertAdjacentHTML(
+            "beforeend",
+            `<li><a href="play.html?movieid=${item.id}&type=tv" class="play-link"
+            ><img src="https://image.tmdb.org/t/p/w154${item.poster_path}"></a></li>`
+          );
+        } else {
+          resultsContainer.insertAdjacentHTML(
+            "beforeend",
+            `<li><a href="play.html?movieid=${item.id}&type=movie" class="play-link"
+            ><img src="https://image.tmdb.org/t/p/w154${item.poster_path}"></a></li>`
+          );
+        }
       }
     });
   });
