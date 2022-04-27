@@ -12,14 +12,18 @@ async function getSearch() {
   );
   let searchMovieResultJson = await searchMovieResult.json();
   console.log(searchMovieResultJson);
-  allResults.push(searchMovieResultJson.results);
+  if (searchMovieResultJson.results.length != 0) {
+    allResults.push(searchMovieResultJson.results);
+  }
 
   let searchShowResult = await fetch(
     `${URL}/search/tv?api_key=${KEY}&query=${query}`
   );
   let searchShowResultJson = await searchShowResult.json();
   console.log(searchShowResultJson);
-  allResults.push(searchShowResultJson.results);
+  if (searchShowResultJson.results.length != 0) {
+    allResults.push(searchShowResultJson.results);
+  }
 
   // Lägger till alla filmer och serier i en lista
   for (let i = 2; i <= searchMovieResultJson.total_pages; i++) {
@@ -61,6 +65,10 @@ async function getSearch() {
       }
     });
   });
+
+  if (allResults.length == 0) {
+    resultsContainer.innerHTML = `No results of "${query}" found!`;
+  }
 }
 
 getSearch();

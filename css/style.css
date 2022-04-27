@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+:root {
+  --yellow: #f5c518;
+}
+
 body {
   background-color: black;
   overflow-x: hidden;
@@ -47,7 +51,7 @@ body {
 }
 
 .titles {
-  color: #f5c518;
+  color: var(--yellow);
   margin-top: 50px;
   margin-left: 20px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
@@ -61,7 +65,7 @@ header {
 
 .menu {
   height: 55px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   border: solid 2px;
@@ -70,13 +74,14 @@ header {
 }
 
 .logo {
-  margin: 30px;
+  margin: 20px;
 }
 
 #search {
   height: 50%;
-  width: 7%;
-  margin: 20px;
+  width: 80px;
+  min-width: 50px;
+  margin-left: 10px;
   border-radius: 5px;
   border: none;
   padding-left: 10px;
@@ -84,7 +89,28 @@ header {
 }
 
 #search:focus {
-  width: 20%;
+  width: 25%;
+}
+
+#profile-icon {
+  color: black;
+  margin-left: auto;
+  margin-right: 2%;
+  border: var(--yellow) 10px solid;
+  background-color: var(--yellow);
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+#profile-menu {
+  background-color: var(--yellow);
+  position: absolute;
+  display: none;
+  top: 58px;
+  right: 0;
+  width: 150px;
+  height: 30vh;
+  z-index: 1000;
 }
 
 .scroll-btn {
@@ -150,7 +176,7 @@ header {
   height: 50px;
   border-radius: 5px;
   margin: 2%;
-  background-color: #f5c518;
+  background-color: var(--yellow);
   font-size: x-large;
   color: rgb(18, 18, 18);
   cursor: pointer;
