@@ -10,13 +10,22 @@ search.onkeydown = async function (event) {
   }
 };
 
+// PROFILE
 let profileIcon = document.getElementById("profile-icon");
+let profileClose = document.getElementById("profile-close");
 let profileMenu = document.getElementById("profile-menu");
 
-profileIcon.onclick = function () {
-  if (profileMenu.style.display === "block") {
+function profileBtn() {
+  if (profileMenu.style.display == "block") {
     profileMenu.style.display = "none";
+    profileIcon.style.display = "flex";
+    profileClose.style.display = "none";
   } else {
     profileMenu.style.display = "block";
+    profileIcon.style.display = "none";
+    profileClose.style.display = "flex";
   }
-};
+}
+
+profileIcon.addEventListener("click", profileBtn);
+profileClose.addEventListener("click", profileBtn);
