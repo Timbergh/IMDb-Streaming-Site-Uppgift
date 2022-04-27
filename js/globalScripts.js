@@ -14,16 +14,20 @@ search.onkeydown = async function (event) {
 let profileIcon = document.getElementById("profile-icon");
 let profileClose = document.getElementById("profile-close");
 let profileMenu = document.getElementById("profile-menu");
+let signup = document.getElementById("profile-list");
 
 function profileBtn() {
-  if (profileMenu.style.display == "block") {
-    profileMenu.style.display = "none";
+  if (profileMenu.style.width == "250px") {
+    profileMenu.style.width = "0";
     profileIcon.style.display = "flex";
     profileClose.style.display = "none";
+    signup.style.display = "none";
+    profileMenu.style.animation = "profileAnimationReverse 0.6s forwards";
   } else {
-    profileMenu.style.display = "block";
+    profileMenu.style.width = "250px";
     profileIcon.style.display = "none";
     profileClose.style.display = "flex";
+    profileMenu.style.animation = "profileAnimation 0.6s forwards";
   }
 }
 

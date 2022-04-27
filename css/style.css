@@ -70,7 +70,6 @@ header {
   width: 100%;
   display: flex;
   align-items: center;
-  border: solid 2px;
   background-color: rgb(18, 18, 18);
   box-shadow: 0 4px 20px 0 rgba(2, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
 }
@@ -97,15 +96,11 @@ header {
 .profile {
   color: black;
   cursor: pointer;
-  margin-left: auto;
-  margin-right: 10px;
+  width: 35px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 35px;
-  height: 35px;
-  background-color: var(--yellow);
-  border-radius: 100%;
   z-index: 2;
 }
 
@@ -115,27 +110,35 @@ header {
 
 #profile-close {
   display: none;
+  border-left: 1px black solid;
 }
 
 #profile-menu {
   background-color: var(--yellow);
-  position: absolute;
-  margin-top: 55px;
+  display: flex;
+  margin-left: auto;
+  justify-content: right;
+  align-items: center;
   top: 0;
   right: 0;
-  width: 150px;
-  display: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 100px;
+  margin-right: 10px;
   z-index: 1;
 }
 
-.profile-list {
-  list-style: none;
-  width: 100%;
+#profile-list {
+  list-style-type: none;
+  display: none;
+}
+
+#profile-list li {
+  display: inline;
+  margin-right: 20px;
 }
 
 .sign-up {
-  display: flex;
-  justify-content: center;
   color: black;
   font-family: "Bebas Neue", cursive;
   font-size: xx-large;
@@ -143,9 +146,48 @@ header {
   user-select: none;
 }
 .sign-up:hover {
-  border-top: black 1px solid;
-  border-bottom: black 1px solid;
   background-color: #ffdf6ccc;
+}
+
+@keyframes profileAnimation {
+  0% {
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
+  70% {
+    border-radius: 0%;
+    width: 55px;
+    height: 55px;
+    margin-right: 0px;
+  }
+  100% {
+    width: 250px;
+    height: 55px;
+    border-radius: 0%;
+    margin-right: 0px;
+  }
+}
+@keyframes profileAnimationReverse {
+  0% {
+    width: 250px;
+    height: 55px;
+    border-radius: 0%;
+    margin-right: 0px;
+  }
+  70% {
+    border-radius: 0%;
+    width: 55px;
+    height: 55px;
+    margin-right: 0px;
+  }
+  100% {
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
 }
 
 .scroll-btn {
