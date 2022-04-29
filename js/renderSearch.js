@@ -28,19 +28,23 @@ async function getSearch() {
   // Lägger till alla filmer och serier i en lista
   for (let i = 2; i <= searchMovieResultJson.total_pages; i++) {
     page = i;
-    searchMovieResult = await fetch(
-      `${URL}/search/movie?api_key=${KEY}&query=${query}&page=${page}`
-    );
-    searchMovieResultJson = await searchMovieResult.json();
-    allResults.push(searchMovieResultJson.results);
+    if (page < 20) {
+      searchMovieResult = await fetch(
+        `${URL}/search/movie?api_key=${KEY}&query=${query}&page=${page}`
+      );
+      searchMovieResultJson = await searchMovieResult.json();
+      allResults.push(searchMovieResultJson.results);
+    }
   }
   for (let i = 2; i <= searchShowResultJson.total_pages; i++) {
     page = i;
-    searchMovieResult = await fetch(
-      `${URL}/search/movie?api_key=${KEY}&query=${query}&page=${page}`
-    );
-    searchShowResultJson = await searchShowResult.json();
-    allResults.push(searchShowResultJson.results);
+    if (page < 20) {
+      searchShowResult = await fetch(
+        `${URL}/search/movie?api_key=${KEY}&query=${query}&page=${page}`
+      );
+      searchShowResultJson = await searchShowResult.json();
+      allResults.push(searchShowResultJson.results);
+    }
   }
   console.log(allResults);
 
@@ -68,6 +72,11 @@ async function getSearch() {
 
   if (allResults.length == 0) {
     resultsContainer.innerHTML = `No results of "${query}" found!`;
+  } else {
+    resultsContainer.insertAdjacentHTML(
+      "afterbegin",
+      `<div class="query-result"><h3>Showing results of "${query}"</h3></div>`
+    );
   }
 }
 

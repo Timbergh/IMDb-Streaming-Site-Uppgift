@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+:root {
+  --yellow: #f5c518;
+}
+
 body {
   background-color: black;
   overflow-x: hidden;
@@ -24,22 +28,22 @@ header {
 
 .menu {
   height: 55px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
-  border: solid 2px;
   background-color: rgb(18, 18, 18);
   box-shadow: 0 4px 20px 0 rgba(2, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
 }
 
 .logo {
-  margin: 30px;
+  margin: 20px;
 }
 
 #search {
   height: 50%;
-  width: 7%;
-  margin: 20px;
+  width: 80px;
+  min-width: 50px;
+  margin-left: 10px;
   border-radius: 5px;
   border: none;
   padding-left: 10px;
@@ -47,7 +51,7 @@ header {
 }
 
 #search:focus {
-  width: 20%;
+  width: 25%;
 }
 
 #movie-container {
@@ -120,4 +124,123 @@ header {
 .also {
   margin-left: 0.5em;
   font-size: 2rem;
+}
+
+.profile {
+  color: black;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+#profile-icon {
+  display: flex;
+}
+
+#profile-close {
+  display: none;
+  border-left: 1px black solid;
+  border-radius: 100%;
+  background-color: var(--yellow);
+}
+
+#profile-menu {
+  background-color: var(--yellow);
+  display: flex;
+  margin-left: auto;
+  justify-content: right;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 100px;
+  margin-right: 10px;
+  z-index: 1;
+}
+
+#profile-list {
+  list-style-type: none;
+  position: absolute;
+  margin-right: 2.35em;
+  display: none;
+  transform: translateX(300px);
+  z-index: 1;
+}
+
+#profile-list li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.sign-up {
+  color: black;
+  font-family: "Bebas Neue", cursive;
+  font-size: xx-large;
+  text-decoration: none;
+  user-select: none;
+}
+.sign-up:hover {
+  border-bottom: 2px black solid;
+}
+
+@keyframes text {
+  0% {
+    transform: translateX(300px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes close {
+  0% {
+    border-radius: 100%;
+  }
+  100% {
+    border-radius: 0%;
+  }
+}
+
+@keyframes profileAnimation {
+  0% {
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
+  70% {
+    border-radius: 0%;
+    width: 55px;
+    height: 55px;
+    margin-right: 0px;
+  }
+  100% {
+    width: 250px;
+    height: 55px;
+    border-radius: 0%;
+    margin-right: 0px;
+  }
+}
+@keyframes profileAnimationReverse {
+  0% {
+    width: 250px;
+    height: 55px;
+    border-radius: 0%;
+    margin-right: 0px;
+  }
+  70% {
+    border-radius: 0%;
+    width: 55px;
+    height: 55px;
+    margin-right: 0px;
+  }
+  100% {
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
 }

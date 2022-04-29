@@ -1,3 +1,4 @@
+// SEARCH
 let search = document.getElementById("search");
 
 search.onkeydown = async function (event) {
@@ -19,15 +20,20 @@ let signup = document.getElementById("profile-list");
 function profileBtn() {
   if (profileMenu.style.width == "250px") {
     profileMenu.style.width = "0";
-    profileIcon.style.display = "flex";
-    profileClose.style.display = "none";
+    setTimeout(() => {
+      profileIcon.style.display = "flex";
+      profileClose.style.display = "none";
+    }, 400);
     signup.style.display = "none";
     profileMenu.style.animation = "profileAnimationReverse 0.6s forwards";
   } else {
     profileMenu.style.width = "250px";
     profileIcon.style.display = "none";
     profileClose.style.display = "flex";
+    profileClose.style.animation = "close 0.5s forwards";
     profileMenu.style.animation = "profileAnimation 0.6s forwards";
+    signup.style.animation = "text 1.5s forwards";
+    signup.style.display = "block";
   }
 }
 

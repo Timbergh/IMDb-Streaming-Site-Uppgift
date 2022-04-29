@@ -111,6 +111,8 @@ header {
 #profile-close {
   display: none;
   border-left: 1px black solid;
+  border-radius: 100%;
+  background-color: var(--yellow);
 }
 
 #profile-menu {
@@ -119,8 +121,6 @@ header {
   margin-left: auto;
   justify-content: right;
   align-items: center;
-  top: 0;
-  right: 0;
   width: 35px;
   height: 35px;
   border-radius: 100px;
@@ -130,7 +130,11 @@ header {
 
 #profile-list {
   list-style-type: none;
+  position: absolute;
+  margin-right: 2.35em;
   display: none;
+  transform: translateX(300px);
+  z-index: 1;
 }
 
 #profile-list li {
@@ -146,7 +150,25 @@ header {
   user-select: none;
 }
 .sign-up:hover {
-  background-color: #ffdf6ccc;
+  border-bottom: 2px black solid;
+}
+
+@keyframes text {
+  0% {
+    transform: translateX(300px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes close {
+  0% {
+    border-radius: 100%;
+  }
+  100% {
+    border-radius: 0%;
+  }
 }
 
 @keyframes profileAnimation {
