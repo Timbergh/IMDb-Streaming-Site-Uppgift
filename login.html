@@ -46,22 +46,27 @@
             <h2>Login to your account</h2>
             <label for="Email">Email</label>
             <input
-              type="email"
+              type="text"
               name="Email"
               class="form-inputs"
+              id="email"
               placeholder="email@example.com"
-              required
             />
             <label for="password">Password </label>
             <input
               type="password"
               name="password"
               class="form-inputs"
+              id="password"
               placeholder="password"
               maxlength="18"
-              required
             />
-            <input type="submit" class="submit-btn btn-margin" value="Login" />
+            <input
+              type="submit"
+              id="submit"
+              class="submit-btn btn-margin"
+              value="Login"
+            />
             <input type="checkbox" name="stay-login" />
             <label for="stay-login">Stay signed-in</label>
             <div class="new">
@@ -77,4 +82,5 @@
       </form>
     </main>
   </body>
+  <script src="js/forms.js"></script>
 </html>
