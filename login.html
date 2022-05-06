@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/login.css" />
     <title>Login</title>
+    <script
+      src="https://kit.fontawesome.com/2a5fb44997.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <main>
-      <form>
+      <div class="form">
         <div class="form-container">
           <div class="logo-container">
             <a class="logo" href="index.html">
@@ -43,44 +47,82 @@
             </a>
           </div>
           <div class="inner-container">
-            <h2>Login to your account</h2>
-            <label for="Email">Email</label>
-            <input
-              type="text"
-              name="Email"
-              class="form-inputs"
-              id="email"
-              placeholder="email@example.com"
-            />
-            <label for="password">Password </label>
-            <input
-              type="password"
-              name="password"
-              class="form-inputs"
-              id="password"
-              placeholder="password"
-              maxlength="18"
-            />
-            <input
-              type="submit"
-              id="submit"
-              class="submit-btn btn-margin"
-              value="Login"
-            />
-            <input type="checkbox" name="stay-login" />
-            <label for="stay-login">Stay signed-in</label>
+            <form>
+              <h2>Login to your account</h2>
+              <label for="Email">Email</label>
+              <input
+                type="email"
+                name="Email"
+                class="form-inputs"
+                placeholder="email@example.com"
+              />
+              <label for="password">Password </label>
+              <input
+                type="password"
+                name="password"
+                class="form-inputs"
+                placeholder="password"
+                maxlength="18"
+              />
+              <input
+                type="submit"
+                id="submit"
+                class="submit-btn btn-margin"
+                value="Login"
+              />
+              <input type="checkbox" name="stay-login" />
+              <label for="stay-login">Stay signed-in</label>
+            </form>
             <div class="new">
               <div class="lines">
                 <h5>New to IMDb?</h5>
               </div>
-              <a href="" class="btn-a"
+              <a href="register.html" class="btn-a"
                 ><button class="submit-btn">Create account</button></a
               >
             </div>
           </div>
         </div>
-      </form>
+      </div>
     </main>
+    <footer>
+      <div id="footer">
+        <div class="links-container">
+          <div class="socials">
+            <ul class="footer-lists">
+              <li>
+                <a href="https://www.facebook.com/imdb"
+                  ><i class="fa-brands fa-facebook-square footer-icons"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/imdb/"
+                  ><i class="fa-brands fa-instagram footer-icons"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://www.twitch.tv/IMDb"
+                  ><i class="fa-brands fa-twitch footer-icons"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://twitter.com/imdb"
+                  ><i class="fa-brands fa-twitter footer-icons"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/imdb"
+                  ><i class="fa-brands fa-youtube footer-icons"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+          <a class="footer-links" href="contact.html">Contact us</a>
+        </div>
+
+        <p class="copyright">© 1990-2022 by IMDb.com, Inc.</p>
+      </div>
+    </footer>
   </body>
   <script src="js/forms.js"></script>
 </html>

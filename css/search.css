@@ -197,3 +197,52 @@ img:hover {
     margin-right: 10px;
   }
 }
+
+#footer {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background-color: rgb(18, 18, 18);
+  flex-direction: column;
+}
+
+.links-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer-links {
+  text-decoration: none;
+  color: white;
+  font-family: "Noto Sans", sans-serif;
+  margin: 2em;
+}
+
+.footer-links:hover {
+  text-decoration: underline;
+}
+
+.footer-icons {
+  text-align: center;
+  line-height: 2em;
+  color: white;
+  font-size: x-large;
+}
+
+.footer-lists li {
+  list-style: none;
+  display: inline;
+  margin: 1em;
+}
+
+.copyright {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: smaller;
+  font-family: "Noto Sans", sans-serif;
+  position: absolute;
+  margin: 1em;
+  bottom: 0;
+}
