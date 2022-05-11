@@ -7,40 +7,58 @@ const URL = "https://api.themoviedb.org/3";
 const KEY = "1a08c634ec1bc9d64558c15c3e88cdbf";
 
 async function getMovies() {
-  let heroTrailer = await fetch(
-    `${URL}/tv/94605/videos?api_key=${KEY}&language=en-US`,
-    requestOptions
-  );
-  let heroTrailerJson = await heroTrailer.json();
-  console.log(heroTrailerJson);
+  try {
+    var heroTrailer = await fetch(
+      `${URL}/tv/94605/videos?api_key=${KEY}&language=en-US`,
+      requestOptions
+    );
+    var heroTrailerJson = await heroTrailer.json();
+    console.log(heroTrailerJson);
+  } catch (error) {
+    alert("Could not load API");
+  }
+  try {
+    var popularMovies = await fetch(
+      `${URL}/movie/popular?api_key=${KEY}&language=en-US&page=1`,
+      requestOptions
+    );
+    var popularMoviesJson = await popularMovies.json();
+    console.log(popularMoviesJson);
+  } catch (error) {
+    alert("Could not load API");
+  }
 
-  let popularMovies = await fetch(
-    `${URL}/movie/popular?api_key=${KEY}&language=en-US&page=1`,
-    requestOptions
-  );
-  let popularMoviesJson = await popularMovies.json();
-  console.log(popularMoviesJson);
+  try {
+    var topRatedMovies = await fetch(
+      `${URL}/movie/top_rated?api_key=${KEY}&language=en-US&page=1`,
+      requestOptions
+    );
+    var topRatedMoviesJson = await topRatedMovies.json();
+    console.log(topRatedMoviesJson);
+  } catch (error) {
+    alert("Could not load API");
+  }
 
-  let topRatedMovies = await fetch(
-    `${URL}/movie/top_rated?api_key=${KEY}&language=en-US&page=1`,
-    requestOptions
-  );
-  let topRatedMoviesJson = await topRatedMovies.json();
-  console.log(topRatedMoviesJson);
-
-  let popularShows = await fetch(
-    `${URL}/tv/popular?api_key=${KEY}&language=en-US&page=1`,
-    requestOptions
-  );
-  let popularshowsJson = await popularShows.json();
-  console.log(popularshowsJson);
-
-  let topRatedShows = await fetch(
-    `${URL}/tv/top_rated?api_key=${KEY}&language=en-US&page=1`,
-    requestOptions
-  );
-  let topRatedShowsJson = await topRatedShows.json();
-  console.log(topRatedMoviesJson);
+  try {
+    var popularShows = await fetch(
+      `${URL}/tv/popular?api_key=${KEY}&language=en-US&page=1`,
+      requestOptions
+    );
+    var popularshowsJson = await popularShows.json();
+    console.log(popularshowsJson);
+  } catch (error) {
+    alert("Could not load API");
+  }
+  try {
+    var topRatedShows = await fetch(
+      `${URL}/tv/top_rated?api_key=${KEY}&language=en-US&page=1`,
+      requestOptions
+    );
+    var topRatedShowsJson = await topRatedShows.json();
+    console.log(topRatedMoviesJson);
+  } catch (error) {
+    alert("Could not load API");
+  }
 
   // Sätt eventlyssnare på alla bilder
 
@@ -50,22 +68,22 @@ async function getMovies() {
 
   popularMoviesJson.results.forEach((item) => {
     let poster = item.poster_path;
-    let movie = `<li><img data-movie-id="${item.id}" data-type="movie" src="https://image.tmdb.org/t/p/w154${poster}"></li>`;
+    let movie = `<li><img data-movie-id="${item.id}" data-type="movie" src="https://image.tmdb.org/t/p/w154${poster}" loading="lazy" alt="Movie Poster"></li>`;
     document.getElementById("popular-movies").innerHTML += movie;
   });
   topRatedMoviesJson.results.forEach((item) => {
     let poster = item.poster_path;
-    let movie = `<li><img data-movie-id="${item.id}" data-type="movie" src="https://image.tmdb.org/t/p/w154${poster}"></li>`;
+    let movie = `<li><img data-movie-id="${item.id}" data-type="movie" src="https://image.tmdb.org/t/p/w154${poster}" loading="lazy" alt="Movie Poster"></li>`;
     document.getElementById("toprated-movies").innerHTML += movie;
   });
   popularshowsJson.results.forEach((item) => {
     let poster = item.poster_path;
-    let movie = `<li><img data-movie-id="${item.id}" data-type="tv" src="https://image.tmdb.org/t/p/w154${poster}"></li>`;
+    let movie = `<li><img data-movie-id="${item.id}" data-type="tv" src="https://image.tmdb.org/t/p/w154${poster}" loading="lazy" alt="Movie Poster"></li>`;
     document.getElementById("popular-shows").innerHTML += movie;
   });
   topRatedShowsJson.results.forEach((item) => {
     let poster = item.poster_path;
-    let movie = `<li><img data-movie-id="${item.id}" data-type="tv" src="https://image.tmdb.org/t/p/w154${poster}"></li>`;
+    let movie = `<li><img data-movie-id="${item.id}" data-type="tv" src="https://image.tmdb.org/t/p/w154${poster}" loading="lazy" alt="Movie Poster"></li>`;
     document.getElementById("toprated-shows").innerHTML += movie;
   });
 
@@ -128,31 +146,47 @@ async function getMovies() {
     let type = allPosters[i].getAttribute("data-type");
     element.onclick = async function () {
       if (type == "movie") {
-        let movieData = await fetch(
-          `${URL}/movie/${movieId}?api_key=${KEY}`,
-          requestOptions
-        );
-        var movieDataJson = await movieData.json();
-        console.log(movieDataJson);
-        let movieTrailer = await fetch(
-          `${URL}/movie/${movieId}/videos?api_key=${KEY}&language=en-US`,
-          requestOptions
-        );
-        var movieTrailerJson = await movieTrailer.json();
-        console.log(movieTrailerJson);
+        try {
+          var movieData = await fetch(
+            `${URL}/movie/${movieId}?api_key=${KEY}`,
+            requestOptions
+          );
+          var movieDataJson = await movieData.json();
+          console.log(movieDataJson);
+        } catch (error) {
+          alert("Could not load API");
+        }
+        try {
+          var movieTrailer = await fetch(
+            `${URL}/movie/${movieId}/videos?api_key=${KEY}&language=en-US`,
+            requestOptions
+          );
+          var movieTrailerJson = await movieTrailer.json();
+          console.log(movieTrailerJson);
+        } catch (error) {
+          alert("Could not load API");
+        }
       } else {
-        let showData = await fetch(
-          `${URL}/tv/${movieId}?api_key=${KEY}`,
-          requestOptions
-        );
-        var showDataJson = await showData.json();
-        console.log(showDataJson);
-        let showTrailer = await fetch(
-          `${URL}/tv/${movieId}/videos?api_key=${KEY}&language=en-US`,
-          requestOptions
-        );
-        var showTrailerJson = await showTrailer.json();
-        console.log(showTrailerJson);
+        try {
+          var showData = await fetch(
+            `${URL}/tv/${movieId}?api_key=${KEY}`,
+            requestOptions
+          );
+          var showDataJson = await showData.json();
+          console.log(showDataJson);
+        } catch (error) {
+          alert("Could not load API");
+        }
+        try {
+          var showTrailer = await fetch(
+            `${URL}/tv/${movieId}/videos?api_key=${KEY}&language=en-US`,
+            requestOptions
+          );
+          var showTrailerJson = await showTrailer.json();
+          console.log(showTrailerJson);
+        } catch (error) {
+          alert("Could not load API");
+        }
       }
       console.log("Clicked");
       info.style.width = "70vw";

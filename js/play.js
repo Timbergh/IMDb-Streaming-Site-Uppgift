@@ -11,50 +11,78 @@ console.log(type);
 async function getMovie() {
   if (type === "movie") {
     //Filmer
-    var details = await fetch(`${URL}/movie/${id}?api_key=${KEY}`);
+    try {
+      var details = await fetch(`${URL}/movie/${id}?api_key=${KEY}`);
 
-    var detailsJson = await details.json();
-    console.log(detailsJson);
+      var detailsJson = await details.json();
+      console.log(detailsJson);
+    } catch (error) {
+      alert("Could not load API");
+    }
+    try {
+      var movieVideo = await fetch(`${URL}/movie/${id}/videos?api_key=${KEY}`);
 
-    var movieVideo = await fetch(`${URL}/movie/${id}/videos?api_key=${KEY}`);
+      var movieVideoJson = await movieVideo.json();
+      console.log(movieVideoJson);
+    } catch (error) {
+      alert("Could not load API");
+    }
+    try {
+      var castMovie = await fetch(`${URL}/movie/${id}/credits?api_key=${KEY}`);
 
-    var movieVideoJson = await movieVideo.json();
-    console.log(movieVideoJson);
+      var castMovieJson = await castMovie.json();
+      console.log(castMovieJson);
+    } catch (error) {
+      alert("Could not load API");
+    }
 
-    var castMovie = await fetch(`${URL}/movie/${id}/credits?api_key=${KEY}`);
+    try {
+      var recommendedMovie = await fetch(
+        `${URL}/movie/${id}/recommendations?api_key=${KEY}`
+      );
 
-    var castMovieJson = await castMovie.json();
-    console.log(castMovieJson);
-
-    var recommendedMovie = await fetch(
-      `${URL}/movie/${id}/recommendations?api_key=${KEY}`
-    );
-
-    var recommendedMovieJson = await recommendedMovie.json();
-    console.log(recommendedMovieJson);
+      var recommendedMovieJson = await recommendedMovie.json();
+      console.log(recommendedMovieJson);
+    } catch (error) {
+      alert("Could not load API");
+    }
   } else {
     // Serier
-    let showData = await fetch(`${URL}/tv/${id}?api_key=${KEY}`);
+    try {
+      var showData = await fetch(`${URL}/tv/${id}?api_key=${KEY}`);
 
-    var showDataJson = await showData.json();
-    console.log(showDataJson);
+      var showDataJson = await showData.json();
+      console.log(showDataJson);
+    } catch (error) {
+      alert("Could not load API");
+    }
+    try {
+      var showTrailer = await fetch(`${URL}/tv/${id}/videos?api_key=${KEY}`);
 
-    let showTrailer = await fetch(`${URL}/tv/${id}/videos?api_key=${KEY}`);
+      var showTrailerJson = await showTrailer.json();
+      console.log(showTrailerJson);
+    } catch (error) {
+      alert("Could not load API");
+    }
+    try {
+      var castShow = await fetch(`${URL}/tv/${id}/credits?api_key=${KEY}`);
 
-    var showTrailerJson = await showTrailer.json();
-    console.log(showTrailerJson);
+      var castShowJson = await castShow.json();
+      console.log(castShowJson);
+    } catch (error) {
+      alert("Could not load API");
+    }
 
-    var castShow = await fetch(`${URL}/tv/${id}/credits?api_key=${KEY}`);
+    try {
+      var recommendedShow = await fetch(
+        `${URL}/tv/${id}/recommendations?api_key=${KEY}`
+      );
 
-    var castShowJson = await castShow.json();
-    console.log(castShowJson);
-
-    var recommendedShow = await fetch(
-      `${URL}/tv/${id}/recommendations?api_key=${KEY}`
-    );
-
-    var recommendedShowJson = await recommendedShow.json();
-    console.log(recommendedShowJson);
+      var recommendedShowJson = await recommendedShow.json();
+      console.log(recommendedShowJson);
+    } catch (error) {
+      alert("Could not load API");
+    }
   }
 
   let movieContainer = document.getElementById("movie-container");
@@ -178,7 +206,7 @@ async function getMovie() {
       recommended.insertAdjacentHTML(
         "afterbegin",
         `<li><a href="play.html?movieid=${element.id}&type=${type}" class="play-link"
-        ><img src="https://image.tmdb.org/t/p/w154${element.poster_path}"></a></li>`
+        ><img src="https://image.tmdb.org/t/p/w154${element.poster_path}" loading="lazy" alt="Movie Poster"></a></li>`
       );
     }
   }

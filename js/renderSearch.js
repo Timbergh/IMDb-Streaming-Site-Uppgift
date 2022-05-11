@@ -7,20 +7,27 @@ let query = searchParams.get("q");
 async function getSearch() {
   let allResults = [];
   let page = 1;
-  let searchMovieResult = await fetch(
-    `${URL}/search/movie?api_key=${KEY}&query=${query}&page=${page}`
-  );
-  let searchMovieResultJson = await searchMovieResult.json();
-  console.log(searchMovieResultJson);
+  try {
+    var searchMovieResult = await fetch(
+      `${URL}/search/movie?api_key=${KEY}&query=${query}&page=${page}`
+    );
+    var searchMovieResultJson = await searchMovieResult.json();
+    console.log(searchMovieResultJson);
+  } catch (error) {
+    alert("Could not load API");
+  }
   if (searchMovieResultJson.results.length != 0) {
     allResults.push(searchMovieResultJson.results);
   }
-
-  let searchShowResult = await fetch(
-    `${URL}/search/tv?api_key=${KEY}&query=${query}`
-  );
-  let searchShowResultJson = await searchShowResult.json();
-  console.log(searchShowResultJson);
+  try {
+    var searchShowResult = await fetch(
+      `${URL}/search/tv?api_key=${KEY}&query=${query}`
+    );
+    var searchShowResultJson = await searchShowResult.json();
+    console.log(searchShowResultJson);
+  } catch (error) {
+    alert("Could not load API");
+  }
   if (searchShowResultJson.results.length != 0) {
     allResults.push(searchShowResultJson.results);
   }
@@ -29,20 +36,28 @@ async function getSearch() {
   for (let i = 2; i <= searchMovieResultJson.total_pages; i++) {
     page = i;
     if (page < 20) {
-      searchMovieResult = await fetch(
-        `${URL}/search/movie?api_key=${KEY}&query=${query}&page=${page}`
-      );
-      searchMovieResultJson = await searchMovieResult.json();
+      try {
+        searchMovieResult = await fetch(
+          `${URL}/search/movie?api_key=${KEY}&query=${query}&page=${page}`
+        );
+        searchMovieResultJson = await searchMovieResult.json();
+      } catch (error) {
+        alert("Could not load API");
+      }
       allResults.push(searchMovieResultJson.results);
     }
   }
   for (let i = 2; i <= searchShowResultJson.total_pages; i++) {
     page = i;
     if (page < 20) {
-      searchShowResult = await fetch(
-        `${URL}/search/movie?api_key=${KEY}&query=${query}&page=${page}`
-      );
-      searchShowResultJson = await searchShowResult.json();
+      try {
+        searchShowResult = await fetch(
+          `${URL}/search/movie?api_key=${KEY}&query=${query}&page=${page}`
+        );
+        searchShowResultJson = await searchShowResult.json();
+      } catch (error) {
+        alert("Could not load API");
+      }
       allResults.push(searchShowResultJson.results);
     }
   }
@@ -57,13 +72,13 @@ async function getSearch() {
           resultsContainer.insertAdjacentHTML(
             "beforeend",
             `<li><a href="play.html?movieid=${item.id}&type=tv" class="play-link"
-            ><img src="https://image.tmdb.org/t/p/w154${item.poster_path}"></a></li>`
+            ><img src="https://image.tmdb.org/t/p/w154${item.poster_path}" loading="lazy" alt="Movie Poster"></a></li>`
           );
         } else {
           resultsContainer.insertAdjacentHTML(
             "beforeend",
             `<li><a href="play.html?movieid=${item.id}&type=movie" class="play-link"
-            ><img src="https://image.tmdb.org/t/p/w154${item.poster_path}"></a></li>`
+            ><img src="https://image.tmdb.org/t/p/w154${item.poster_path}" loading="lazy" alt="Movie Poster"></a></li>`
           );
         }
       }
