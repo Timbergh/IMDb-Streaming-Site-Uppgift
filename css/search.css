@@ -9,6 +9,18 @@
   --yellow: #f5c518;
 }
 
+@media only screen and (max-width: 600px) {
+  li img {
+    width: 180px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  li img {
+    width: 200px;
+  }
+}
+
 body {
   background-color: black;
   overflow-x: hidden;
@@ -121,7 +133,7 @@ header {
 
 li img {
   margin: 5px;
-  width: 200px;
+
   border-radius: 10px;
   user-select: none;
   transition: transform 0.5s ease;
