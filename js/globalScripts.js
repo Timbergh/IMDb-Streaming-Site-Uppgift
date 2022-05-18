@@ -32,7 +32,6 @@ function profileBtn() {
     profileClose.style.display = "flex";
     profileClose.style.animation = "close 0.5s forwards";
     profileMenu.style.animation = "profileAnimation 0.6s forwards";
-    signup.style.animation = "text 1.5s forwards";
     signup.style.display = "block";
   }
 }

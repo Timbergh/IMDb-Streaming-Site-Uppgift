@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/form.css" />
+    <link rel="stylesheet" href="../css/form.css" />
     <title>Login</title>
     <script
       src="https://kit.fontawesome.com/2a5fb44997.js"
@@ -48,7 +48,7 @@
           </div>
           <div class="inner-container">
             <form>
-              <h2>Contact Us</h2>
+              <h2>Create account</h2>
               <label for="Email">Email</label>
               <input
                 type="email"
@@ -56,31 +56,32 @@
                 class="form-inputs"
                 placeholder="email@example.com"
               />
-              <label for="subject">Whats your subject</label>
-              <select class="form-inputs" name="subject">
-                <option value="Help">Contact us</option>
-                <option value="Help">Have problems?</option>
-                <option value="Help">Help</option>
-                <option value="Help">Other</option>
-              </select>
-              <label for="message">Your Message</label>
-              <textarea
-                name="message"
-                cols="30"
-                rows="10"
+              <label for="password">Password </label>
+              <input
+                type="password"
+                name="password"
                 class="form-inputs"
-                id="message"
-              ></textarea>
+                placeholder="password"
+                maxlength="18"
+              />
+              <label for="password-repeat">Repeat Password </label>
+              <input
+                type="password"
+                name="password-repeat"
+                class="form-inputs"
+                placeholder="password"
+                maxlength="18"
+              />
               <input
                 type="submit"
                 id="submit"
                 class="submit-btn btn-margin"
-                value="Send"
+                value="Create account"
               />
             </form>
             <div class="new">
               <div class="lines">
-                <h5>Want to login?</h5>
+                <h5>Already have an IMDb account?</h5>
               </div>
               <a href="login.html" class="btn-a"
                 ><button class="submit-btn">Login</button></a
@@ -129,5 +130,4 @@
       </div>
     </footer>
   </body>
-  <script src="js/forms.js"></script>
 </html>

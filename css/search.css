@@ -13,11 +13,126 @@
   li img {
     width: 180px;
   }
+
+  .sign-up {
+    font-size: 1.3em;
+  }
+
+  #profile-list li {
+    margin-right: 5px;
+  }
+
+  #profile-list {
+    margin-right: 38px;
+  }
+
+  @keyframes profileAnimation {
+    0% {
+      border-radius: 100%;
+      width: 35px;
+      height: 35px;
+      margin-right: 10px;
+    }
+    70% {
+      border-radius: 0%;
+      width: 55px;
+      height: 55px;
+      margin-right: 0px;
+    }
+    100% {
+      width: 40%;
+      height: 55px;
+      border-radius: 0%;
+      margin-right: 0px;
+    }
+  }
+  @keyframes profileAnimationReverse {
+    0% {
+      width: 40%;
+      height: 55px;
+      border-radius: 0%;
+      margin-right: 0px;
+    }
+    70% {
+      border-radius: 0%;
+      width: 55px;
+      height: 55px;
+      margin-right: 0px;
+    }
+    100% {
+      border-radius: 100%;
+      width: 35px;
+      height: 35px;
+      margin-right: 10px;
+    }
+  }
 }
 
 @media only screen and (min-width: 600px) {
   li img {
     width: 200px;
+  }
+
+  .sign-up {
+    font-size: xx-large;
+  }
+
+  #profile-list li {
+    margin-right: 20px;
+  }
+
+  #profile-list {
+    margin-right: 35px;
+  }
+
+  @keyframes profileAnimation {
+    0% {
+      border-radius: 100%;
+      width: 35px;
+      height: 35px;
+      margin-right: 10px;
+    }
+    70% {
+      border-radius: 0%;
+      width: 55px;
+      height: 55px;
+      margin-right: 0px;
+    }
+    100% {
+      width: 250px;
+      height: 55px;
+      border-radius: 0%;
+      margin-right: 0px;
+    }
+  }
+  @keyframes profileAnimationReverse {
+    0% {
+      width: 250px;
+      height: 55px;
+      border-radius: 0%;
+      margin-right: 0px;
+    }
+    70% {
+      border-radius: 0%;
+      width: 55px;
+      height: 55px;
+      margin-right: 0px;
+    }
+    100% {
+      border-radius: 100%;
+      width: 35px;
+      height: 35px;
+      margin-right: 10px;
+    }
+  }
+}
+
+@keyframes close {
+  0% {
+    border-radius: 100%;
+  }
+  100% {
+    border-radius: 0%;
   }
 }
 
@@ -85,6 +200,8 @@ header {
 #profile-menu {
   background-color: var(--yellow);
   display: flex;
+  overflow: hidden;
+  position: relative;
   margin-left: auto;
   justify-content: right;
   align-items: center;
@@ -98,24 +215,22 @@ header {
 #profile-list {
   list-style-type: none;
   position: absolute;
-  margin-right: 2.35em;
   display: none;
-  transform: translateX(300px);
   z-index: 1;
+  white-space: nowrap;
 }
 
 #profile-list li {
   display: inline;
-  margin-right: 20px;
 }
 
 .sign-up {
   color: black;
   font-family: "Bebas Neue", cursive;
-  font-size: xx-large;
   text-decoration: none;
   user-select: none;
 }
+
 .sign-up:hover {
   border-bottom: 2px black solid;
 }
@@ -149,65 +264,6 @@ img:hover {
 .query-result {
   width: 100%;
   margin: 5px;
-}
-
-@keyframes text {
-  0% {
-    transform: translateX(300px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes close {
-  0% {
-    border-radius: 100%;
-  }
-  100% {
-    border-radius: 0%;
-  }
-}
-
-@keyframes profileAnimation {
-  0% {
-    border-radius: 100%;
-    width: 35px;
-    height: 35px;
-    margin-right: 10px;
-  }
-  70% {
-    border-radius: 0%;
-    width: 55px;
-    height: 55px;
-    margin-right: 0px;
-  }
-  100% {
-    width: 250px;
-    height: 55px;
-    border-radius: 0%;
-    margin-right: 0px;
-  }
-}
-@keyframes profileAnimationReverse {
-  0% {
-    width: 250px;
-    height: 55px;
-    border-radius: 0%;
-    margin-right: 0px;
-  }
-  70% {
-    border-radius: 0%;
-    width: 55px;
-    height: 55px;
-    margin-right: 0px;
-  }
-  100% {
-    border-radius: 100%;
-    width: 35px;
-    height: 35px;
-    margin-right: 10px;
-  }
 }
 
 #footer {

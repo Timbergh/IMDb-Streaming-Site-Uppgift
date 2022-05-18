@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/form.css" />
+    <link rel="stylesheet" href="../css/form.css" />
     <title>Login</title>
     <script
       src="https://kit.fontawesome.com/2a5fb44997.js"
@@ -48,7 +48,7 @@
           </div>
           <div class="inner-container">
             <form>
-              <h2>Login to your account</h2>
+              <h2>Contact Us</h2>
               <label for="Email">Email</label>
               <input
                 type="email"
@@ -56,29 +56,34 @@
                 class="form-inputs"
                 placeholder="email@example.com"
               />
-              <label for="password">Password </label>
-              <input
-                type="password"
-                name="password"
+              <label for="subject">Whats your subject</label>
+              <select class="form-inputs" name="subject">
+                <option value="Help">Contact us</option>
+                <option value="Help">Have problems?</option>
+                <option value="Help">Help</option>
+                <option value="Help">Other</option>
+              </select>
+              <label for="message">Your Message</label>
+              <textarea
+                name="message"
+                cols="30"
+                rows="10"
                 class="form-inputs"
-                placeholder="password"
-                maxlength="18"
-              />
+                id="message"
+              ></textarea>
               <input
                 type="submit"
                 id="submit"
                 class="submit-btn btn-margin"
-                value="Login"
+                value="Send"
               />
-              <input type="checkbox" name="stay-login" />
-              <label for="stay-login">Stay signed-in</label>
             </form>
             <div class="new">
               <div class="lines">
-                <h5>New to IMDb?</h5>
+                <h5>Want to login?</h5>
               </div>
-              <a href="register.html" class="btn-a"
-                ><button class="submit-btn">Create account</button></a
+              <a href="login.html" class="btn-a"
+                ><button class="submit-btn">Login</button></a
               >
             </div>
           </div>
@@ -124,5 +129,4 @@
       </div>
     </footer>
   </body>
-  <script src="js/forms.js"></script>
 </html>
