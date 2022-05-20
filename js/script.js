@@ -13,7 +13,6 @@ async function getMovies() {
       requestOptions
     );
     var heroTrailerJson = await heroTrailer.json();
-    console.log(heroTrailerJson);
   } catch (error) {
     alert("Could not load API");
   }
@@ -23,7 +22,6 @@ async function getMovies() {
       requestOptions
     );
     var popularMoviesJson = await popularMovies.json();
-    console.log(popularMoviesJson);
   } catch (error) {
     alert("Could not load API");
   }
@@ -34,7 +32,6 @@ async function getMovies() {
       requestOptions
     );
     var topRatedMoviesJson = await topRatedMovies.json();
-    console.log(topRatedMoviesJson);
   } catch (error) {
     alert("Could not load API");
   }
@@ -45,7 +42,6 @@ async function getMovies() {
       requestOptions
     );
     var popularshowsJson = await popularShows.json();
-    console.log(popularshowsJson);
   } catch (error) {
     alert("Could not load API");
   }
@@ -55,7 +51,6 @@ async function getMovies() {
       requestOptions
     );
     var topRatedShowsJson = await topRatedShows.json();
-    console.log(topRatedMoviesJson);
   } catch (error) {
     alert("Could not load API");
   }
@@ -139,7 +134,6 @@ async function getMovies() {
   let name = document.getElementById("name");
 
   // Få information om filmer/serier
-  console.log(allPosters);
   for (let i = 0; i < allPosters.length; i++) {
     const element = allPosters[i];
     let movieId = allPosters[i].getAttribute("data-movie-id");
@@ -152,7 +146,6 @@ async function getMovies() {
             requestOptions
           );
           var movieDataJson = await movieData.json();
-          console.log(movieDataJson);
         } catch (error) {
           alert("Could not load API");
         }
@@ -162,7 +155,6 @@ async function getMovies() {
             requestOptions
           );
           var movieTrailerJson = await movieTrailer.json();
-          console.log(movieTrailerJson);
         } catch (error) {
           alert("Could not load API");
         }
@@ -173,7 +165,6 @@ async function getMovies() {
             requestOptions
           );
           var showDataJson = await showData.json();
-          console.log(showDataJson);
         } catch (error) {
           alert("Could not load API");
         }
@@ -183,12 +174,10 @@ async function getMovies() {
             requestOptions
           );
           var showTrailerJson = await showTrailer.json();
-          console.log(showTrailerJson);
         } catch (error) {
           alert("Could not load API");
         }
       }
-      console.log("Clicked");
       info.style.width = "70vw";
       info.style.height = "85vh";
       setTimeout(function () {

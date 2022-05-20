@@ -12,7 +12,6 @@ async function getSearch() {
       `${URL}/search/movie?api_key=${KEY}&query=${query}&page=${page}`
     );
     var searchMovieResultJson = await searchMovieResult.json();
-    console.log(searchMovieResultJson);
   } catch (error) {
     alert("Could not load API");
   }
@@ -24,7 +23,6 @@ async function getSearch() {
       `${URL}/search/tv?api_key=${KEY}&query=${query}`
     );
     var searchShowResultJson = await searchShowResult.json();
-    console.log(searchShowResultJson);
   } catch (error) {
     alert("Could not load API");
   }
@@ -61,7 +59,6 @@ async function getSearch() {
       allResults.push(searchShowResultJson.results);
     }
   }
-  console.log(allResults);
 
   let resultsContainer = document.getElementById("search-result-container");
 
